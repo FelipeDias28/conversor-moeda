@@ -41,6 +41,18 @@ class _HomeState extends State<Home> {
   TextEditingController dolarController = TextEditingController();
   TextEditingController euroController = TextEditingController();
 
+  void _realChanged(String text) {
+    print(text);
+  }
+
+  void _dolarChanged(String text) {
+    print(text);
+  }
+
+  void _euroChanged(String text) {
+    print(text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,23 +111,26 @@ class _HomeState extends State<Home> {
                       const Divider(height: 40.0),
                       buildTextField(
                         "Reais",
-                        "R\$",
+                        "R\$ ",
                         context,
                         realController,
+                        _realChanged,
                       ),
                       const Divider(),
                       buildTextField(
                         "Dólares",
-                        "US\$",
+                        "US\$ ",
                         context,
                         dolarController,
+                        _dolarChanged,
                       ),
                       const Divider(),
                       buildTextField(
                         "Euros",
-                        "€",
+                        "€ ",
                         context,
                         euroController,
+                        _euroChanged,
                       ),
                     ],
                   ),
@@ -129,9 +144,15 @@ class _HomeState extends State<Home> {
 }
 
 Widget buildTextField(
-    String label, String prefix, context, TextEditingController controller) {
+  String label,
+  String prefix,
+  context,
+  TextEditingController controller,
+  void Function(String)? func,
+) {
   return TextField(
     controller: controller,
+    onChanged: func,
     decoration: InputDecoration(
       prefixText: prefix,
       labelText: label,
@@ -146,5 +167,6 @@ Widget buildTextField(
       color: Colors.amber,
       fontSize: 25.0,
     ),
+    keyboardType: TextInputType.number,
   );
 }
