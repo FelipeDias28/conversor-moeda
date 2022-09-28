@@ -37,6 +37,10 @@ class _HomeState extends State<Home> {
   late double dolar;
   late double euro;
 
+  TextEditingController realController = TextEditingController();
+  TextEditingController dolarController = TextEditingController();
+  TextEditingController euroController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,61 +96,26 @@ class _HomeState extends State<Home> {
                           color: Colors.amber,
                         ),
                       ),
-                      TextField(
-                        decoration: InputDecoration(
-                          prefixText: "R\$ ",
-                          labelText: "Reais",
-                          labelStyle: const TextStyle(color: Colors.amber),
-                          border: const OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Theme.of(context).hintColor)),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Theme.of(context).primaryColor)),
-                        ),
-                        style: const TextStyle(
-                          color: Colors.amber,
-                          fontSize: 25.0,
-                        ),
+                      const Divider(height: 40.0),
+                      buildTextField(
+                        "Reais",
+                        "R\$",
+                        context,
+                        realController,
                       ),
                       const Divider(),
-                      TextField(
-                        decoration: InputDecoration(
-                          prefixText: "US\$ ",
-                          labelText: "Dólares",
-                          labelStyle: const TextStyle(color: Colors.amber),
-                          border: const OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Theme.of(context).hintColor)),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Theme.of(context).primaryColor)),
-                        ),
-                        style: const TextStyle(
-                          color: Colors.amber,
-                          fontSize: 25.0,
-                        ),
+                      buildTextField(
+                        "Dólares",
+                        "US\$",
+                        context,
+                        dolarController,
                       ),
                       const Divider(),
-                      TextField(
-                        decoration: InputDecoration(
-                          prefixText: "€",
-                          labelText: "Euros",
-                          labelStyle: const TextStyle(color: Colors.amber),
-                          border: const OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Theme.of(context).hintColor)),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Theme.of(context).primaryColor)),
-                        ),
-                        style: const TextStyle(
-                          color: Colors.amber,
-                          fontSize: 25.0,
-                        ),
+                      buildTextField(
+                        "Euros",
+                        "€",
+                        context,
+                        euroController,
                       ),
                     ],
                   ),
@@ -157,4 +126,25 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+}
+
+Widget buildTextField(
+    String label, String prefix, context, TextEditingController controller) {
+  return TextField(
+    controller: controller,
+    decoration: InputDecoration(
+      prefixText: prefix,
+      labelText: label,
+      labelStyle: const TextStyle(color: Colors.amber),
+      border: const OutlineInputBorder(),
+      enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Theme.of(context).hintColor)),
+      focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+    ),
+    style: const TextStyle(
+      color: Colors.amber,
+      fontSize: 25.0,
+    ),
+  );
 }
