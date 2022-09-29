@@ -162,6 +162,31 @@ class _HomeState extends State<Home> {
                         euroController,
                         _euroChanged,
                       ),
+                      const Divider(
+                        height: 50,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: ElevatedButton(
+                          onPressed: _clearAll,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.amber,
+                            side: const BorderSide(
+                              color: Colors.amber,
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 16.0,
+                            ),
+                          ),
+                          child: const Text(
+                            "Limpar Campos",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 );
